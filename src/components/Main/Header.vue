@@ -2,7 +2,7 @@
   <div id="main" class="flex justify-between ml-10 mr-10 p-[29px]">
     <!-- Logo -->
     <div id="logo" class="flex justify-center items-center gap-2">
-      <img src="../../../public/logo.png" alt="Logo img" />
+      <img src="/logo.png" alt="Logo img" />
       <h1 class="font-['Montserrat'] text-[34px] font-bold">Furniro</h1>
     </div>
 
@@ -29,8 +29,6 @@
     </div>
   </div>
 </template>
-
-<script setup></script>
 
 <style lang="scss" scoped>
 @media screen and (max-width: 1000px) {
