@@ -5,6 +5,7 @@
   <OurProducts />
   <BeautifulRooms />
   <ShareYourSetup />
+  <Footer />
 </template>
 
 <script setup>
@@ -14,6 +15,7 @@ import BrowseTheRange from "../components/Main/BrowseTheRange.vue";
 import OurProducts from "../components/Main/OurProducts.vue";
 import BeautifulRooms from "../components/Main/BeautifulRooms.vue";
 import ShareYourSetup from "../components/Main/ShareYourSetup.vue";
+import Footer from "../components/Main/Footer.vue";
 </script>
 
 <style lang="scss" scoped></style>
