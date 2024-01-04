@@ -8,8 +8,8 @@
 
     <!-- Center -->
     <div id="center" class="flex justify-center items-center gap-[75px]">
-      <a href="#" class="font-['Poppins'] text-[16px] font-medium">Home</a>
-      <a href="#" class="font-['Poppins'] text-[16px] font-medium">Shop</a>
+      <a href="/" class="font-['Poppins'] text-[16px] font-medium">Home</a>
+      <a href="/shop" class="font-['Poppins'] text-[16px] font-medium">Shop</a>
       <a href="#" class="font-['Poppins'] text-[16px] font-medium">About</a>
       <a href="#" class="font-['Poppins'] text-[16px] font-medium">Contact</a>
     </div>
