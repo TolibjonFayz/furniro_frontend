@@ -1,6 +1,6 @@
 <template>
-  <div id="main" class="flex flex-col bg-[#FCF8F3] mt-20 mb-10">
-    <div class="flex flex-col items-center">
+  <div id="main" class="flex flex-col bg-[#FCF8F3] mt-20 mb-10 pb-8">
+    <div class="flex flex-col items-center text-center">
       <h1 class="font-['Poppins'] text-[40px] font-bold mt-5 text-[#3a3a3a]">
         50+ Beautiful rooms inspiration
       </h1>
@@ -9,9 +9,10 @@
         inspire you
       </h3>
       <el-button
+        id="button"
         type="warning"
         class="mt-5 mb-5 font-['Poppins']"
-        style="padding: 12px 36px; border-radius: 2px; width: 12%"
+        style="border-radius: 2px; width: 12%"
         >Explore more</el-button
       >
     </div>
@@ -42,18 +43,15 @@ const images = ref({
 
 <style lang="scss" scoped>
 .el-carousel__item h3 {
-  // color: #475669;
   opacity: 0.75;
   line-height: 300px;
   margin: 0;
   text-align: center;
 }
 
-.el-carousel__item:nth-child(2n) {
-  // background-color: #99a9bf;
-}
-
-.el-carousel__item:nth-child(2n + 1) {
-  // background-color: #d3dce6;
+@media screen and (max-width: 900px) {
+  #button {
+    padding: 18px 60px;
+  }
 }
 </style>
