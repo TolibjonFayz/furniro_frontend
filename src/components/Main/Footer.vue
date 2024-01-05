@@ -10,7 +10,7 @@
         </h4>
       </div>
 
-      <div class="flex gap-20">
+      <div class="flex gap-36">
         <div id="first-two" class="flex flex-col gap-8">
           <h2 class="font-['Poppins'] text-[16px] font-medium text-[#9F9F9F]">
             Links
