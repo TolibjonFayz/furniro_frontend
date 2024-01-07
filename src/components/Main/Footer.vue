@@ -50,7 +50,7 @@
           Newsletter
         </h2>
         <div class="flex">
-          <el-input placeholder="Enter Your Email Address" />
+          <el-input v-model="email" placeholder="Enter Your Email Address" />
           <el-button>SUBSCRIBE</el-button>
         </div>
       </div>
@@ -64,7 +64,10 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+const email = ref("");
+</script>
 
 <style lang="scss" scoped>
 #main,

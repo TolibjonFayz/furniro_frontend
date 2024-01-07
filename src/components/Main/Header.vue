@@ -1,10 +1,10 @@
 <template>
   <div id="main" class="flex justify-between ml-10 mr-10 p-[29px]">
     <!-- Logo -->
-    <div id="logo" class="flex justify-center items-center gap-2">
+    <a href="/" id="logo" class="flex justify-center items-center gap-2">
       <img src="/logo.png" alt="Logo img" />
       <h1 class="font-['Montserrat'] text-[34px] font-bold">Furniro</h1>
-    </div>
+    </a>
 
     <!-- Center -->
     <div id="center" class="flex justify-center items-center gap-[75px]">
