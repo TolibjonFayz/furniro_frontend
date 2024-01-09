@@ -1,5 +1,5 @@
 <template>
-  <div id="main" class="flex ml-20 mt-10 gap-16 float-start">
+  <div id="main" class="flex ml-20 mt-10 gap-16 float-start mb-28">
     <!-- First -->
     <div id="one">
       <div id="head">
@@ -151,6 +151,9 @@
             operations@trevifurniture.com
           </h2>
           <h2 class="font-['Poppins'] text-[20px] font-normal">1 Year</h2>
+          <el-button type="warning" style="padding: 25px; width: 150px"
+            >Add to card</el-button
+          >
         </div>
       </div>
     </div>

@@ -1,9 +1,11 @@
 <template>
-  <Header />
-  <ComparisionImage />
-  <CompareInfo />
-  <HighQuality />
-  <Footer />
+  <div class="flex flex-col">
+    <Header />
+    <ComparisionImage />
+    <CompareInfo />
+    <HighQuality />
+    <Footer />
+  </div>
 </template>
 
 <script setup>

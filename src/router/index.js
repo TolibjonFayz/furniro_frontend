@@ -3,6 +3,7 @@ import MainPageVue from "../pages/MainPage.vue";
 import ShopPageVue from "../pages/ShopPage.vue";
 import SingleProductVue from "../pages/SingleProduct.vue";
 import ComparisonPageVue from "../pages/ComparisonPage.vue";
+import CartPageVue from "../pages/CartPage.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,11 @@ const router = createRouter({
       path: "/comparision",
       name: "comparision",
       component: ComparisonPageVue,
+    },
+    {
+      path: "/cart",
+      name: "cart",
+      component: CartPageVue,
     },
   ],
 });
