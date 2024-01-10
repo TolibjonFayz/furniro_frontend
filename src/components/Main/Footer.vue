@@ -58,7 +58,7 @@
 
     <div id="second" class="flex mt-5 justify-center mb-5">
       <h1 class="w-[88%] pt-5 font-['Poppins'] text-[16px] font-normal">
-        2023 furino. All rights reverved
+        2023, Furino, (Tolibjon Fayzullayev). All rights reverved
       </h1>
     </div>
   </div>
