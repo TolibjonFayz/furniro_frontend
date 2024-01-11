@@ -5,6 +5,7 @@ import SingleProductVue from "../pages/SingleProduct.vue";
 import ComparisonPageVue from "../pages/ComparisonPage.vue";
 import CartPageVue from "../pages/CartPage.vue";
 import CheckoutPageVue from "../pages/CheckoutPage.vue";
+import ContactPageVue from "../pages/ContactPage.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,6 +39,11 @@ const router = createRouter({
       path: "/checkout",
       name: "checkout",
       component: CheckoutPageVue,
+    },
+    {
+      path: "/contact",
+      name: "contact",
+      component: ContactPageVue,
     },
   ],
 });
