@@ -7,6 +7,7 @@ import CartPageVue from "../pages/CartPage.vue";
 import CheckoutPageVue from "../pages/CheckoutPage.vue";
 import ContactPageVue from "../pages/ContactPage.vue";
 import AboutPageVue from "../pages/AboutPage.vue";
+import i404PageVue from "../pages/i404Page.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -51,6 +52,7 @@ const router = createRouter({
       name: "about",
       component: AboutPageVue,
     },
+    { path: "/:catchAll(.*)*", component: i404PageVue },
   ],
 });
 

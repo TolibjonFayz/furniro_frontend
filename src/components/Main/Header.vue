@@ -10,20 +10,24 @@
     <div id="center" class="flex justify-center items-center gap-[75px]">
       <a href="/" class="font-['Poppins'] text-[16px] font-medium">Home</a>
       <a href="/shop" class="font-['Poppins'] text-[16px] font-medium">Shop</a>
-      <a href="#" class="font-['Poppins'] text-[16px] font-medium">About</a>
-      <a href="#" class="font-['Poppins'] text-[16px] font-medium">Contact</a>
+      <a href="/about" class="font-['Poppins'] text-[16px] font-medium"
+        >About</a
+      >
+      <a href="/contact" class="font-['Poppins'] text-[16px] font-medium"
+        >Contact</a
+      >
     </div>
     <div id="end" class="flex justify-center items-center gap-[45px]">
       <a href="#">
         <i class="fa-regular fa-user cursor-pointer"></i>
       </a>
-      <a href="#">
+      <a href="shop">
         <i class="fa-solid fa-magnifying-glass cursor-pointer"></i>
       </a>
       <a href="#">
         <i class="fa-regular fa-heart cursor-pointer"></i>
       </a>
-      <a href="#">
+      <a href="/cart">
         <i class="fa-brands fa-opencart cursor-pointer"></i>
       </a>
     </div>
