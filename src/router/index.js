@@ -6,6 +6,7 @@ import ComparisonPageVue from "../pages/ComparisonPage.vue";
 import CartPageVue from "../pages/CartPage.vue";
 import CheckoutPageVue from "../pages/CheckoutPage.vue";
 import ContactPageVue from "../pages/ContactPage.vue";
+import AboutPageVue from "../pages/AboutPage.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,6 +45,11 @@ const router = createRouter({
       path: "/contact",
       name: "contact",
       component: ContactPageVue,
+    },
+    {
+      path: "/about",
+      name: "about",
+      component: AboutPageVue,
     },
   ],
 });
