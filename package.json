@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.6.5",
     "element-plus": "^2.4.4",
     "pinia": "^2.1.7",
     "swiper": "^8.4.7",

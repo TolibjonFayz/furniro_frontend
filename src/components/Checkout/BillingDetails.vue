@@ -143,7 +143,6 @@ const go = () => {
       "Your order successfully received. Our admintrators will call you soon 🙂"),
     type: "success",
   });
-  console.log(forms);
   setTimeout(() => {
     router.push({ name: "home" });
   }, 5000);

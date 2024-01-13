@@ -96,22 +96,6 @@
           <div class="star"></div>
           <div class="star"></div>
           <div class="star"></div>
-          <div class="star"></div>
-          <div class="star"></div>
-          <div class="star"></div>
-          <div class="star"></div>
-          <div class="star"></div>
-          <div class="star"></div>
-          <div class="star"></div>
-          <div class="star"></div>
-          <div class="star"></div>
-          <div class="star"></div>
-          <div class="star"></div>
-          <div class="star"></div>
-          <div class="star"></div>
-          <div class="star"></div>
-          <div class="star"></div>
-          <div class="star"></div>
         </div>
       </div>
     </div>
@@ -139,13 +123,13 @@
   background: #eee;
   .text_group {
     .text_404 {
-      font-family: "Comic Neue", cursive;
+      font-family: "Poppins";
       font-size: 10em;
       box-sizing: border-box;
       color: #363636;
     }
     .text_lost {
-      font-family: "Comic Neue", cursive;
+      font-family: "Poppins";
       font-size: 2em;
       line-height: 50px;
       box-sizing: border-box;
