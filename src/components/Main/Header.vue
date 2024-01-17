@@ -24,7 +24,7 @@
       <a href="shop">
         <i class="fa-solid fa-magnifying-glass cursor-pointer"></i>
       </a>
-      <a href="#">
+      <a href="/likes">
         <i class="fa-regular fa-heart cursor-pointer"></i>
       </a>
       <a href="/cart">

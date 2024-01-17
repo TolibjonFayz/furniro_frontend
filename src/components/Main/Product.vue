@@ -1,6 +1,6 @@
 <template>
   <div id="blog" class="flex flex-col w-[20%]">
-    <img src="/image1.png" alt="Blog img" />
+    <img :src="props.alldata?.product?.image[0]?.img_url" alt="Blog img" />
 
     <div id="hover">
       <el-button
@@ -24,19 +24,45 @@
 
     <div class="flex flex-col p-3 bg-[#F4F5F7] gap-2">
       <h1 class="font-['Poppins'] text-[24px] font-semibold text-[#3A3A3A]">
-        Syltherine
+        {{ props.alldata.product?.name }}
       </h1>
       <h3 class="font-['Poppins'] text-[16px] font-medium text-[#898989]">
-        Stylish cafe chair
+        {{ props.alldata.product?.category?.name }}
       </h3>
       <h2 class="font-['Poppins'] text-[20px] font-semibold text-[#3A3A3A]">
-        20.000 USD
+        {{ formatNumber(props.alldata?.product?.price) }}$
       </h2>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+function formatNumber(number) {
+  const numberStr = number.toString();
+  if (numberStr.length < 4) {
+    return numberStr;
+  }
+  let result = ref("");
+  let counter = ref(0);
+  const reversedStr = numberStr.split("").reverse().join("");
+  for (let i = 0; i < reversedStr.length; i += 1) {
+    result.value += reversedStr[i];
+    counter.value += 1;
+    if (counter.value % 3 == 0) {
+      result.value += ",";
+    }
+  }
+  if (result.value.at(-1) == ",") result.value = result.value.slice(0, -1);
+  result.value = result.value.split("").reverse().join("");
+  return result.value;
+}
+const props = defineProps({
+  alldata: {
+    type: Object,
+  },
+});
+</script>
 
 <style lang="scss" scoped>
 #blog {
