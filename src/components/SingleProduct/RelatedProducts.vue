@@ -3,9 +3,6 @@
     <h1 class="font-['Poppins'] text-[36px] font-medium">Related Products</h1>
     <div class="flex gap-5 flex-wrap justify-center">
       <Product />
-      <Product />
-      <Product />
-      <Product />
     </div>
     <el-button type="warning" plain style="width: 120px">Show more</el-button>
   </div>

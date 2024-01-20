@@ -3,7 +3,7 @@
     Istaklarim
   </h1>
   <div class="flex ml-10 mr-10 flex-wrap gap-5 justify-center">
-    <Product
+    <LikeProduct
       v-for="(item, index) in likesStore.userlikeds"
       :alldata="item"
       :key="index"
@@ -14,8 +14,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { useLikesStore } from "../../stores/likes.js";
-import Product from "../Main/Product.vue";
-
+import LikeProduct from "../Main/LikeProduct.vue";
 const likes = ref();
 const likesStore = useLikesStore();
 

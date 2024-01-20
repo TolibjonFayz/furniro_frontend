@@ -1,5 +1,5 @@
 <template>
-  <div id="main" class="mt-10 pt-10 mb-10">
+  <div id="main" class="mt-10 pt-10 mb-5 font-['Poppins']">
     <el-tabs v-model="activeName" class="demo-tabs flex items-center flex-col">
       <!-- Description -->
       <el-tab-pane
@@ -8,29 +8,14 @@
         class="flex flex-col items-center"
         id="description"
       >
-        <h1 class="w-[70%] mt-8">
-          Embodying the raw, wayward spirit of rock ‘n’ roll, the Kilburn
-          portable active stereo speaker takes the unmistakable look and sound
-          of Marshall, unplugs the chords, and takes the show on the road.
-          <br />
-          <br />
-          Weighing in under 7 pounds, the Kilburn is a lightweight piece of
-          vintage styled engineering. Setting the bar as one of the loudest
-          speakers in its class, the Kilburn is a compact, stout-hearted hero
-          with a well-balanced audio which boasts a clear midrange and extended
-          highs for a sound that is both articulate and pronounced. The analogue
-          knobs allow you to fine tune the controls to your personal preferences
-          while the guitar-influenced leather strap enables easy and stylish
-          travel.
+        <h1 class="w-[70%] mt-8 mb-8">
+          {{ props.alldata.description }}
         </h1>
-        <div class="flex w-[90%]">
+        <div class="flex w-[90%] gap-5">
           <img
-            src="https://nowe-meble.pl/userdata/gfx/1578/Rozkladana-sofa-skandynawska-ALVA-nowe-meble.pl-Lodz.jpg"
-            alt="Product img"
-            class="w-[50%]"
-          />
-          <img
-            src="https://i.pinimg.com/originals/f0/0a/be/f00abed1e70c694f466996feb8d914d1.jpg"
+            v-for="(item, index) in props.alldata.image"
+            :key="index"
+            :src="item.img_url"
             alt="Product img"
             class="w-[50%]"
           />
@@ -41,66 +26,100 @@
       <el-tab-pane
         label="Additional Information"
         name="second"
-        class="flex flex-col items-center"
+        class="flex justify-center flex-wrap gap-5 font-['Poppins']"
         id="additional_information"
+        v-for="(item, index) in $props.alldata.additionalInformation"
+        :key="index"
       >
-        <h1 class="w-[70%] mt-8">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi eos
-          perspiciatis nemo fugit, asperiores quidem maxime nostrum in iure
-          vitae sapiente qui expedita velit est vero delectus nobis minus
-          cupiditate rem quo ratione a culpa dolore quod? Reiciendis, iusto?
-          Aliquid blanditiis exercitationem alias debitis facilis esse vitae
-          dolor dolore amet, porro architecto. Hic, harum necessitatibus non
-          quasi in natus optio labore perspiciatis cum nulla maiores distinctio
-          tenetur, saepe esse eius magnam libero sunt voluptatibus delectus
-          blanditiis quos accusamus vel asperiores numquam. Voluptates
-          recusandae voluptatem rem possimus magni commodi eligendi ad dicta
-          inventore quis sit tempora culpa atque deleniti placeat saepe, ratione
-          soluta aliquid dignissimos eveniet obcaecati earum reprehenderit
-          dolores eum. Perferendis deserunt nobis velit, itaque magni incidunt
-          facere iusto officiis rerum quidem. Illo culpa asperiores mollitia,
-          sint aliquid iure consectetur nulla deserunt esse modi deleniti
-          officia? Exercitationem magnam a eius neque illo repudiandae nisi
-          dolorum sint, in, officia eum, aliquid animi quidem perspiciatis!
-          Molestiae praesentium molestias, natus at fugiat temporibus minus amet
-          sunt, voluptas inventore facilis error repudiandae velit esse ratione
-          laboriosam perferendis recusandae. Nobis tempora voluptatem cumque
-          magni autem? Atque iure, vero enim quod voluptates nemo, possimus,
-          voluptas odit laboriosam rem ullam similique quos fuga dicta
-          recusandae. Amet, tempore.
-        </h1>
+        <div class="w-[35%]">
+          <h1 class="text-[28px]">General</h1>
+          <h2>Sales Package : {{ item.sales_package }}</h2>
+          <h2>Model Number: {{ item.model_number }}</h2>
+          <h2>Secondary Material : {{ item.secondary_material }}</h2>
+          <h2>Configuration : {{ item.configuration }}</h2>
+          <h2>Upholstery Material : {{ item.upholstery_material }}</h2>
+          <h2>Upholstery Color : {{ item.upholstery_color }}</h2>
+        </div>
+
+        <div class="w-[35%]">
+          <h1 class="text-[28px]">Product</h1>
+          <h2>Filling Material : {{ item.filling_material }}</h2>
+          <h2>Finish Type : {{ item.finish_type }}</h2>
+          <h2>Maximum Load Capacity : {{ item.maximum_load_capacity }}</h2>
+          <h2>Origin of Manufacture : {{ item.origin_of_manufacture }}</h2>
+        </div>
+
+        <div class="w-[35%]">
+          <h1 class="text-[28px]">Dimensions</h1>
+          <h2>Width : {{ item.width }}</h2>
+          <h2>Height : {{ item.height }}</h2>
+          <h2>Depth : {{ item.depth }}</h2>
+          <h2>Weight : {{ item.weight }}</h2>
+        </div>
+
+        <div class="w-[35%]">
+          <h1 class="text-[28px]">Warranty</h1>
+          <h2>Warranty Summary : {{ item.warranty_summary }}</h2>
+          <h2>Warranty Service Type : {{ item.warranty_service_type }}</h2>
+          <h2>Domestic Warranty : {{ item.domestic_warranty }}</h2>
+        </div>
       </el-tab-pane>
 
       <!-- Reviews -->
       <el-tab-pane
-        label="Reviews [5]"
+        :label="`Reviews [${reviewStore.productR?.length}]`"
         name="third"
-        class="flex flex-col justify-center items-center"
+        class="flex flex-col"
         id="reviews"
       >
-        <div class="flex flex-col w-[70%]">
-          <h1 id="reviewc" class="pb-5">All reviews - 25</h1>
-          <h2>Eshmat</h2>
-          <div class="flex items-center">
-            <el-rate v-model="rate" allow-half disabled />
-            <h1>2023.03.25</h1>
+        <div class="flex flex-col">
+          <div
+            v-if="reviewStore.productR"
+            v-for="(item, index) in reviewStore.productR"
+            :key="index"
+            class="mb-8"
+          >
+            <h2>{{ item?.user?.first_name }}</h2>
+            <div class="flex items-center">
+              <el-rate v-model="item.rate" allow-half disabled />
+              <h1>{{ dateEdit(item.createdAt) }}</h1>
+            </div>
+            <h3>
+              {{ item.review }}
+            </h3>
           </div>
-          <h3>
-            Mi A2 32 Televizorini oldim, kachestvosi zo'r, Allplayga 1 oylik
-            kupon bilam taroz sovg'asi bilan keldi raxmat hursand bo'ldik,
-            narxiyam boshqa joylardan arzinga tushdi. dostavka bir kunga
-            kechigdi lekin zarari yo'q.
-          </h3>
+          <el-empty
+            v-if="!reviewStore.productR.length > 0"
+            description="There are no comments yet"
+          />
         </div>
       </el-tab-pane>
     </el-tabs>
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref } from "vue";
-const rate = ref(4.5);
+<script setup>
+import { ref, onMounted } from "vue";
+import { useReviewsStore } from "../../stores/reviews";
+
+const reviewStore = useReviewsStore();
 const activeName = ref("first");
+
+const dateEdit = (date) => {
+  date = date.slice(0, 10);
+  return date;
+};
+const props = defineProps({
+  alldata: {
+    type: Object,
+  },
+});
+
+onMounted(async () => {
+  setTimeout(async () => {
+    await reviewStore.getProductReviews(props.alldata.id);
+  }, 500);
+});
 </script>
 
 <style lang="scss" scoped>

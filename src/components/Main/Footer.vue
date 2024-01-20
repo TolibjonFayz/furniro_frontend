@@ -2,11 +2,11 @@
   <div id="main" class="pt-10">
     <div id="first" class="flex justify-around">
       <div id="first-one" class="flex flex-col gap-20">
-        <h1 class="font-['Poppins'] text-[24px] font-bold">Furniro.</h1>
+        <a href="/" class="font-['Poppins'] text-[24px] font-bold">Furniro.</a>
         <h4
           class="w-[285px] font-['Poppins'] text-[16px] font-normal text-[#9F9F9F]"
         >
-          400 University Drive Suite 200 Coral Gables, FL 33134 USA
+          Najot Ta'lim, Toshkent, Uzbekistan
         </h4>
       </div>
 
@@ -15,31 +15,52 @@
           <h2 class="font-['Poppins'] text-[16px] font-medium text-[#9F9F9F]">
             Links
           </h2>
-          <h3 class="font-['Poppins'] text-[16px] font-medium cursor-pointer">
+          <a
+            href="/"
+            class="font-['Poppins'] text-[16px] font-medium cursor-pointer"
+          >
             Home
-          </h3>
-          <h3 class="font-['Poppins'] text-[16px] font-medium cursor-pointer">
+          </a>
+          <a
+            href="/shop"
+            class="font-['Poppins'] text-[16px] font-medium cursor-pointer"
+          >
             Shop
-          </h3>
-          <h3 class="font-['Poppins'] text-[16px] font-medium cursor-pointer">
+          </a>
+          <a
+            href="/about"
+            class="font-['Poppins'] text-[16px] font-medium cursor-pointer"
+          >
             About
-          </h3>
-          <h3 class="font-['Poppins'] text-[16px] font-medium cursor-pointer">
+          </a>
+          <a
+            href="/contact"
+            class="font-['Poppins'] text-[16px] font-medium cursor-pointer"
+          >
             Contact
-          </h3>
+          </a>
         </div>
 
         <div id="first-three" class="flex flex-col gap-8">
           <h2 class="font-['Poppins'] text-[16px] font-medium text-[#9F9F9F]">
             Help
           </h2>
-          <h3 class="font-['Poppins'] text-[16px] font-medium cursor-pointer">
+          <h3
+            @click="underDevelopment()"
+            class="font-['Poppins'] text-[16px] font-medium cursor-pointer"
+          >
             Payment Options
           </h3>
-          <h3 class="font-['Poppins'] text-[16px] font-medium cursor-pointer">
+          <h3
+            @click="underDevelopment()"
+            class="font-['Poppins'] text-[16px] font-medium cursor-pointer"
+          >
             Returns
           </h3>
-          <h3 class="font-['Poppins'] text-[16px] font-medium cursor-pointer">
+          <h3
+            @click="underDevelopment()"
+            class="font-['Poppins'] text-[16px] font-medium cursor-pointer"
+          >
             Privacy Policies
           </h3>
         </div>
@@ -49,16 +70,38 @@
         <h2 class="font-['Poppins'] text-[16px] font-medium text-[#9F9F9F]">
           Newsletter
         </h2>
-        <div class="flex">
-          <el-input v-model="email" placeholder="Enter Your Email Address" />
-          <el-button>SUBSCRIBE</el-button>
+        <div class="flex gap-1">
+          <div>
+            <el-input
+              v-model="email"
+              maxlength="40"
+              placeholder="Enter Your Email Address"
+            />
+            <el-alert
+              v-if="isEmailValid"
+              title="Fill this field correctly"
+              type="error"
+            />
+            <el-alert
+              v-if="isEmail"
+              title="Please enter your email address correctly"
+              type="error"
+            />
+          </div>
+
+          <el-button v-if="!subscribeLoadBtn" @click="subscribe()"
+            >SUBSCRIBE</el-button
+          >
+          <el-button v-if="subscribeLoadBtn" type="primary" loading
+            >Please wait...</el-button
+          >
         </div>
       </div>
     </div>
 
     <div id="second" class="flex mt-5 justify-center mb-5">
       <h1 class="w-[88%] pt-5 font-['Poppins'] text-[16px] font-normal">
-        2023, Furino, (Tolibjon Fayzullayev). All rights reverved
+        2024, Furino, (Tolibjon Fayzullayev). All rights reverved
       </h1>
     </div>
   </div>
@@ -66,7 +109,43 @@
 
 <script setup>
 import { ref } from "vue";
+import { ElMessage } from "element-plus";
+import { ElNotification } from "element-plus";
+
 const email = ref("");
+const isEmailValid = ref(false);
+const isEmail = ref(false);
+const subscribeLoadBtn = ref(false);
+
+const subscribe = () => {
+  if (email.value.length <= 10) {
+    isEmailValid.value = true;
+  } else if (email.value.search("@gmail.com") < 0) {
+    isEmail.value = true;
+    isEmailValid.value = false;
+  } else {
+    isEmailValid.value = false;
+    isEmail.value = false;
+    subscribeLoadBtn.value = true;
+    setTimeout(() => {
+      subscribeLoadBtn.value = false;
+      ElNotification({
+        title: "Successfully",
+        message: "Thank you for subscribing to the Furniro newsletter.",
+        type: "success",
+      });
+    }, 1500);
+  }
+};
+
+const subscribingloading = () => {};
+
+const underDevelopment = () => {
+  ElMessage({
+    message: "Sorry, this service is under development.",
+    type: "warning",
+  });
+};
 </script>
 
 <style lang="scss" scoped>
@@ -84,5 +163,11 @@ const email = ref("");
   #second {
     text-align: center;
   }
+}
+.el-alert {
+  margin: 5px 0 0;
+}
+.el-alert:first-child {
+  margin: 0;
 }
 </style>

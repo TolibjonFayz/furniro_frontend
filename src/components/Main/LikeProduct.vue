@@ -1,10 +1,6 @@
 <template>
-  <div @click="goSingleProduct()" id="blog" class="flex flex-col w-[20%]">
-    <img
-      :src="props.alldata?.image[0]?.img_url"
-      alt="Blog img"
-      class="h-[100%]"
-    />
+  <div id="blog" class="flex flex-col w-[20%]">
+    <img :src="props.alldata?.product?.image[0]?.img_url" alt="Blog img" />
 
     <div id="hover">
       <el-button
@@ -28,21 +24,19 @@
 
     <div class="flex flex-col p-3 bg-[#F4F5F7] gap-2">
       <h1 class="font-['Poppins'] text-[24px] font-semibold text-[#3A3A3A]">
-        {{ props.alldata.name }}
+        {{ props.alldata.product?.name }}
       </h1>
       <h3 class="font-['Poppins'] text-[16px] font-medium text-[#898989]">
-        {{ props.alldata.category?.name }}
+        {{ props.alldata.product?.category?.name }}
       </h3>
       <h2 class="font-['Poppins'] text-[20px] font-semibold text-[#3A3A3A]">
-        {{ formatNumber(props.alldata.price) }}$
+        {{ formatNumber(props.alldata?.product?.price) }}$
       </h2>
     </div>
   </div>
 </template>
 
 <script setup>
-import router from "../../router";
-
 function formatNumber(number) {
   const numberStr = number.toString();
   if (numberStr.length < 4) {
@@ -65,10 +59,6 @@ const props = defineProps({
     type: Object,
   },
 });
-
-const goSingleProduct = () => {
-  router.push(`/product/${props.alldata.id}`);
-};
 </script>
 
 <style lang="scss" scoped>

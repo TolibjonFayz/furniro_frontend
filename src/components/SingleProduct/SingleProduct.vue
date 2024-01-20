@@ -11,12 +11,12 @@
       >
         <Slide
           id="slide"
-          v-for="slide in images"
+          v-for="slide in $props.alldata.image"
           :key="slide"
           class="h-[400px] bg-[#F9F1E7] flex items-center justify-center rounded-[10px]"
         >
           <div class="carousel__item flex items-center justify-center">
-            <img :src="slide" alt="" class="h-[350px]" />
+            <img :src="slide.img_url" alt="img" class="h-[350px]" />
           </div>
         </Slide>
         <template #addons>
@@ -34,11 +34,15 @@
         ref="carousel"
         :transition="400"
       >
-        <Slide v-for="slide in images" :key="slide" class="h-[100px]">
+        <Slide
+          v-for="slide in $props.alldata.image"
+          :key="slide"
+          class="h-[100px]"
+        >
           <div
             class="carousel__item flex items-center justify-center h-full w-[96%] rounded-[5%] bg-[#F9F1E7]"
           >
-            <img :src="slide" alt="img" class="h-[60px]" />
+            <img :src="slide.img_url" alt="img" class="h-[60px]" />
           </div>
         </Slide>
         <template #addons>
@@ -51,20 +55,20 @@
 
     <!-- Second -->
     <div id="second" class="flex flex-col justify-start w-[50%]">
-      <h1 class="font-['Poppins'] text-[42px] font-normal">Asgard sofa</h1>
+      <h1 class="font-['Poppins'] text-[42px] font-normal">
+        {{ $props.alldata.name }}
+      </h1>
       <h2 class="font-['Poppins'] text-[24px] font-medium text-[#9F9F9F]">
-        2.000.000 $
+        {{ formatNumber($props.alldata.price) }}$
       </h2>
       <div class="flex items-center">
         <el-rate v-model="value" allow-half disabled class="pr-3" />
         <h1 id="rate" class="pl-5 text-[13px] font-['Poppins'] text-[#9F9F9F]">
-          5 customer reviews
+          {{ $props.alldata.reviews?.length }} customer reviews
         </h1>
       </div>
       <p id="pi" class="w-[60%] font-['Poppins'] text-[13px]">
-        Setting the bar as one of the loudest speakers in its class, the Kilburn
-        is a compact, stout-hearted hero with a well-balanced audio which boasts
-        a clear midrange and extended highs for a sound.
+        {{ $props.alldata.description }}
       </p>
 
       <!-- Size -->
@@ -72,9 +76,12 @@
         Size
       </h2>
       <div>
-        <el-button plain>L</el-button>
-        <el-button plain>XL</el-button>
-        <el-button plain>XS</el-button>
+        <el-button
+          plain
+          v-for="(item, index) in $props.alldata.product_size"
+          :key="index"
+          >{{ item.sizes?.name }}</el-button
+        >
       </div>
 
       <!-- Color -->
@@ -82,9 +89,11 @@
         Color
       </h2>
       <div>
-        <el-button circle :style="`background-color: #816DFA`" />
-        <el-button circle :style="`background-color: #000`" />
-        <el-button circle :style="`background-color: #B88E2F`" />
+        <el-button
+          v-for="(item, index) in $props.alldata.product_color"
+          circle
+          :style="`background-color: ${item.color?.hex_code}`"
+        />
       </div>
 
       <!-- Buttons -->
@@ -106,14 +115,21 @@
         </div>
         <div id="xira-s">
           <h1 class="font-['Poppins'] text-[16px] text-[#9F9F9F]">: SS001</h1>
-          <h1 class="font-['Poppins'] text-[16px] text-[#9F9F9F]">: Sofas</h1>
+          <h1 class="font-['Poppins'] text-[16px] text-[#9F9F9F]">
+            : {{ props.alldata.category?.name }}
+          </h1>
           <h1 class="font-['Poppins'] text-[16px] text-[#9F9F9F]">
             : Sofa, Chair, Home, Shop
           </h1>
           <h1 class="font-['Poppins'] text-[16px] text-[#9F9F9F]">
-            : <i class="fa-brands fa-facebook text-[#000] mr-6"></i>
-            <i class="fa-brands fa-linkedin text-[#000] mr-6"></i>
-            <i class="fa-brands fa-x-twitter text-[#000]"></i>
+            :
+            <i
+              class="fa-brands fa-facebook text-[#000] mr-6 cursor-pointer"
+            ></i>
+            <i
+              class="fa-brands fa-linkedin text-[#000] mr-6 cursor-pointer"
+            ></i>
+            <i class="fa-brands fa-x-twitter text-[#000] cursor-pointer"></i>
           </h1>
         </div>
       </div>
@@ -123,20 +139,48 @@
 
 <script setup>
 import { ref } from "vue";
-const num = ref(1);
-const value = ref(4.5);
-const images = ref({
-  one: "https://th.bing.com/th/id/R.014bcc9239e4d14ab003dc2959a28c53?rik=qzonHMs51NOMnA&riu=http%3a%2f%2fawesome11.com%2fwp-content%2fuploads%2f2016%2f07%2fFeng-Shui-Living-Room-Decor.jpg&ehk=PIWxYpoRrLseqmsoDnv%2b4r4VEM7zHm%2bt1Bg44KMg8%2f8%3d&risl=&pid=ImgRaw&r=0",
-  two: "https://havenly.com/blog/wp-content/uploads/2020/07/contemporary-bedroom-3-1710x970.jpeg",
-  three:
-    "https://www.architectureartdesigns.com/wp-content/uploads/2016/03/10-17-630x420.jpg",
-  four: "https://cdn.mos.cms.futurecdn.net/Wh9xAztoNRL59fE6aYttjM-768-80.jpg",
-  five: "https://ownbydesign.com/wp-content/uploads/2020/07/Fireplace-tight-e-800x526.jpg",
-});
-
 import { Carousel, Slide, Navigation } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
+
+function formatNumber(number) {
+  try {
+    const numberStr = number.toString();
+    if (numberStr.length < 4) {
+      return numberStr;
+    }
+
+    let formattedNumber = "";
+    let counter = 0;
+    for (const digit of numberStr.split("").reverse()) {
+      formattedNumber = digit + formattedNumber;
+      counter += 1;
+      if (counter % 3 === 0 && counter !== numberStr.length) {
+        formattedNumber = "," + formattedNumber;
+      }
+    }
+    return formattedNumber;
+  } catch (error) {}
+}
+
+const num = ref(1);
+const value = ref(0);
 const currentSlide = ref(0);
+
+const props = defineProps({
+  alldata: {
+    type: Object,
+  },
+});
+
+const productrate = () => {
+  setTimeout(() => {
+    props.alldata.reviews.forEach((element) => {
+      value.value += element.rate;
+    });
+    value.value = value.value / props.alldata.reviews.length;
+  }, 500);
+};
+productrate();
 </script>
 
 <style lang="scss" scoped>
