@@ -99,7 +99,7 @@
       <!-- Buttons -->
       <div id="buttons" class="flex gap-5 pb-14 mt-8">
         <el-input-number v-model="num" :min="1" />
-        <el-button plain>Add to cart</el-button>
+        <el-button plain @click="addToCart()">Add to cart</el-button>
         <el-button plain style="margin-left: 0px"
           ><i class="fa-solid fa-plus mr-1 mt-[2px]"></i>Compare</el-button
         >
@@ -139,8 +139,14 @@
 
 <script setup>
 import { ref } from "vue";
+import { useCartStore } from "../../stores/cart";
 import { Carousel, Slide, Navigation } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
+import { useRoute } from "vue-router";
+import { ElNotification } from "element-plus";
+
+const cartStore = useCartStore();
+const route = useRoute();
 
 function formatNumber(number) {
   try {
@@ -181,6 +187,21 @@ const productrate = () => {
   }, 500);
 };
 productrate();
+
+// add to cart
+const addToCart = async () => {
+  const payload = {
+    user_id: Number(localStorage.getItem("userid")),
+    product_id: Number(route.params.id),
+    quantity: num.value,
+  };
+  await cartStore.addToCart(payload);
+  ElNotification({
+    title: "Product added to cart",
+    message: props.alldata.name,
+    type: "success",
+  });
+};
 </script>
 
 <style lang="scss" scoped>
