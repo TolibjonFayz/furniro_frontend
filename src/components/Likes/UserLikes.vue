@@ -3,7 +3,13 @@
     Istaklarim
   </h1>
   <div class="flex ml-10 mr-10 flex-wrap gap-5 justify-center">
+    <el-empty
+      class="font-['Poppins']"
+      v-if="likesStore.userlikeds.length == 0"
+      description="You have no favorite products"
+    />
     <LikeProduct
+      v-if="likesStore.userlikeds.length > 0"
       v-for="(item, index) in likesStore.userlikeds"
       :alldata="item"
       :key="index"

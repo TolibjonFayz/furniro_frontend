@@ -21,16 +21,18 @@
       </h1>
 
       <p class="font-['Poppins'] text-[18px] font-medium leading-[24px]">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus,
-        luctus nec ullamcorper mattis.
+        Embrace the change with our curated selection of arrivals, meticulously
+        crafted for modern lives.
       </p>
-      <el-button
-        id="button"
-        type="warning"
-        class="w-[30%] mt-[46px] font-['Poppins']"
-        style="padding: 25px 72px; font-weight: 700; border-radius: 2px"
-        >BUY NOW</el-button
-      >
+      <a href="/shop">
+        <el-button
+          id="button"
+          type="warning"
+          class="w-[30%] mt-[46px] font-['Poppins']"
+          style="padding: 25px 72px; font-weight: 700; border-radius: 2px"
+          >BUY NOW</el-button
+        >
+      </a>
     </div>
   </div>
 </template>

@@ -18,16 +18,16 @@
       >
     </div>
     <div id="end" class="flex justify-center items-center gap-[45px]">
-      <a @click="changeDialogValue()">
+      <a @click="changeDialogValue('user')">
         <i class="fa-regular fa-user cursor-pointer"></i>
       </a>
       <a href="shop">
         <i class="fa-solid fa-magnifying-glass cursor-pointer"></i>
       </a>
-      <a href="/likes">
+      <a @click="changeDialogValue('likes')">
         <i class="fa-regular fa-heart cursor-pointer"></i>
       </a>
-      <a href="/cart">
+      <a @click="changeDialogValue('cart')">
         <i class="fa-brands fa-opencart cursor-pointer"></i>
       </a>
     </div>
@@ -36,7 +36,7 @@
   <!-- Profile dialog -->
   <el-dialog
     v-model="dialogVisible"
-    title="Telefon raqamingizni kiriting"
+    title="Enter your phone number"
     width="30%"
     :before-close="handleClose"
   >
@@ -92,10 +92,10 @@ const userStore = useUserStore();
 const dialogVisible = ref(false);
 const kodnidavri = ref(false);
 
-const changeDialogValue = () => {
+const changeDialogValue = (name) => {
   const userid = localStorage.getItem("userid");
   if (!userid) dialogVisible.value = true;
-  else router.push({ name: "user" });
+  else router.push({ name: name });
 };
 
 const handleClose = (done) => {

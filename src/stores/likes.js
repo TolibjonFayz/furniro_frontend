@@ -7,6 +7,14 @@ export const useLikesStore = defineStore({
     userlikeds: [],
   }),
   actions: {
+    async createLike(payload) {
+      try {
+        let res = await likes.createLike(payload);
+        return res;
+      } catch (error) {
+        console.log(error);
+      }
+    },
     async getLikesUserById(user_id) {
       try {
         let res = await likes.getLikesByUserId(user_id);
@@ -35,6 +43,13 @@ export const useLikesStore = defineStore({
     async deleteLike(id) {
       try {
         return await likes.deleteLikeById(id);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async deleteLikeByIds(payload) {
+      try {
+        return await likes.deleteLikeByUserId(payload);
       } catch (error) {
         console.log(error);
       }

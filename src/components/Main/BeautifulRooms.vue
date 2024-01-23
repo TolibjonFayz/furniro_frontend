@@ -8,13 +8,15 @@
         Our designer already made a lot of beautiful prototipe of rooms that
         inspire you
       </h3>
-      <el-button
-        id="button"
-        type="warning"
-        class="mt-5 mb-5 font-['Poppins']"
-        style="border-radius: 2px; width: 12%"
-        >Explore more</el-button
-      >
+      <a href="/shop">
+        <el-button
+          id="button"
+          type="warning"
+          class="mt-5 mb-5 font-['Poppins']"
+          style="border-radius: 2px"
+          >Explore more</el-button
+        >
+      </a>
     </div>
 
     <el-carousel :interval="4000" type="card" height="200px">
@@ -31,6 +33,7 @@
 
 <script setup>
 import { ref } from "vue";
+import router from "../../router";
 const images = ref({
   one: "https://th.bing.com/th/id/R.014bcc9239e4d14ab003dc2959a28c53?rik=qzonHMs51NOMnA&riu=http%3a%2f%2fawesome11.com%2fwp-content%2fuploads%2f2016%2f07%2fFeng-Shui-Living-Room-Decor.jpg&ehk=PIWxYpoRrLseqmsoDnv%2b4r4VEM7zHm%2bt1Bg44KMg8%2f8%3d&risl=&pid=ImgRaw&r=0",
   two: "https://havenly.com/blog/wp-content/uploads/2020/07/contemporary-bedroom-3-1710x970.jpeg",
@@ -39,6 +42,10 @@ const images = ref({
   four: "https://cdn.mos.cms.futurecdn.net/Wh9xAztoNRL59fE6aYttjM-768-80.jpg",
   five: "https://ownbydesign.com/wp-content/uploads/2020/07/Fireplace-tight-e-800x526.jpg",
 });
+
+const goToShop = () => {
+  router.push(`/shop`);
+};
 </script>
 
 <style lang="scss" scoped>

@@ -4,7 +4,7 @@
       Browse The Range
     </h1>
     <h3 class="font-['Poppins'] text-[20px] font-normal text-[#666]">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Less is more. Elevate your space with timeless designs built for serenity.
     </h3>
     <div id="second" class="flex gap-5 mt-12">
       <div id="in" class="flex flex-col items-center gap-5">
