@@ -30,8 +30,8 @@ const router = createRouter({
       component: SingleProductVue,
     },
     {
-      path: "/comparision",
-      name: "comparision",
+      path: "/comparison/:id",
+      name: "comparison",
       component: ComparisonPageVue,
     },
     {

@@ -1,10 +1,12 @@
 <template>
   <Header />
-  <SPWay :alldata="productStore.one" v-loading="loading" />
-  <SingleProduct :alldata="productStore.one" v-loading="loading" />
-  <Description :alldata="productStore.one" v-loading="loading" />
-  <!-- <RelatedProducts /> -->
-  <Footer />
+  <div v-loading="loading">
+    <SPWay :alldata="productStore.one" />
+    <SingleProduct :alldata="productStore.one" />
+    <Description :alldata="productStore.one" />
+    <!-- <RelatedProducts /> -->
+    <Footer />
+  </div>
 </template>
 
 <script setup>

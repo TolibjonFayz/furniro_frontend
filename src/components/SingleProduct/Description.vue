@@ -118,7 +118,7 @@ const props = defineProps({
 onMounted(async () => {
   setTimeout(async () => {
     await reviewStore.getProductReviews(props.alldata.id);
-  }, 500);
+  }, 5000);
 });
 </script>
 

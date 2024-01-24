@@ -1,10 +1,14 @@
 <template>
-  <el-empty v-if="isEmpty" description="Your cart is empty" />
+  <el-empty
+    class="font-['Poppins']"
+    v-if="isEmpty"
+    description="Your cart is empty"
+  />
   <div
     v-if="!isEmpty"
     v-loading="loading"
     id="main"
-    class="flex justify-between items-center mt-[-100px] mb-20"
+    class="flex font-['Poppins'] justify-between items-center mt-[-100px] mb-20"
   >
     <div id="left" class="w-[65%] flex items-center flex-col mt-16">
       <div
@@ -23,7 +27,11 @@
           class="w-[100%] flex items-center gap-20 mt-3"
         >
           <div class="w-[42%] flex items-center">
-            <img :src="images[index]" alt="img" class="w-[111px] mr-3" />
+            <img
+              :src="images[index]"
+              alt="img"
+              class="w-[111px]  mr-3"
+            />
             <h1 class="w-[80%]">{{ item?.product?.name }}</h1>
           </div>
           <h2>{{ formatNumber(item?.product?.price * item?.quantity) }}$</h2>

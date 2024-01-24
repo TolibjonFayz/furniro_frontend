@@ -1,5 +1,9 @@
 <template>
-  <div id="blogs" class="flex flex-wrap justify-center mt-12 mb-10 gap-10">
+  <div
+    v-loading="loading"
+    id="blogs"
+    class="flex flex-wrap justify-center mt-12 mb-10 gap-10"
+  >
     <Product
       v-for="(item, index) in productStore.all"
       :alldata="item"
@@ -12,14 +16,17 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { ref, onMounted } from "vue";
 import Product from "../Main/Product.vue";
 import { useProductStore } from "../../stores/product";
 
+const loading = ref(false);
 const productStore = useProductStore();
 
 onMounted(async () => {
+  loading.value = true;
   await productStore.getAllProducts();
+  loading.value = false;
 });
 </script>
 

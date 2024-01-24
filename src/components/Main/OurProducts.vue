@@ -8,7 +8,11 @@
     >
       Our products
     </h1>
-    <div id="blogs" class="flex flex-wrap justify-center mb-12 gap-10">
+    <div
+      v-loading="loading"
+      id="blogs"
+      class="flex flex-wrap justify-center mb-12 gap-10"
+    >
       <Product
         v-for="(item, index) in productStore.all"
         :alldata="item"
@@ -29,10 +33,13 @@ import { onMounted, ref } from "vue";
 import Product from "./Product.vue";
 import { useProductStore } from "../../stores/product";
 
+const loading = ref(false);
 const productStore = useProductStore();
 
 onMounted(async () => {
+  loading.value = true;
   await productStore.getAllProducts();
+  loading.value = false;
 });
 </script>
 

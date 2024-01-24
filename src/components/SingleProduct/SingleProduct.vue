@@ -100,7 +100,7 @@
       <div id="buttons" class="flex gap-5 pb-14 mt-8">
         <el-input-number v-model="num" :min="1" />
         <el-button plain @click="addToCart()">Add to cart</el-button>
-        <el-button plain style="margin-left: 0px"
+        <el-button plain style="margin-left: 0px" @click="compare()"
           ><i class="fa-solid fa-plus mr-1 mt-[2px]"></i>Compare</el-button
         >
       </div>
@@ -138,12 +138,13 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useCartStore } from "../../stores/cart";
 import { Carousel, Slide, Navigation } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
 import { useRoute } from "vue-router";
 import { ElNotification } from "element-plus";
+import router from "../../router";
 
 const cartStore = useCartStore();
 const route = useRoute();
@@ -169,7 +170,6 @@ function formatNumber(number) {
 }
 
 const num = ref(1);
-const value = ref(0);
 const currentSlide = ref(0);
 
 const props = defineProps({
@@ -178,15 +178,15 @@ const props = defineProps({
   },
 });
 
-const productrate = () => {
-  setTimeout(() => {
+const value = computed(() => {
+  let totalRate = 0;
+  if (props.alldata && props.alldata.reviews) {
     props.alldata.reviews.forEach((element) => {
-      value.value += element.rate;
+      totalRate += element.rate;
     });
-    value.value = value.value / props.alldata.reviews.length;
-  }, 500);
-};
-productrate();
+    return totalRate / props.alldata.reviews.length;
+  }
+});
 
 // add to cart
 const addToCart = async () => {
@@ -201,6 +201,10 @@ const addToCart = async () => {
     message: props.alldata.name,
     type: "success",
   });
+};
+
+const compare = () => {
+  router.push(`/comparison/${props.alldata.id}`);
 };
 </script>
 

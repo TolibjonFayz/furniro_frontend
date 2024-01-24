@@ -23,7 +23,10 @@
         >
           <i class="fa-solid fa-share-nodes"></i> Share
         </h3>
-        <h3 class="flex items-center gap-2 text-[16px] cursor-pointer">
+        <h3
+          @click="compare()"
+          class="flex items-center gap-2 text-[16px] cursor-pointer"
+        >
           <i class="fa-solid fa-code-compare"></i> Compare
         </h3>
         <h3
@@ -246,6 +249,11 @@ const like = async () => {
       });
     }
   }
+};
+
+// Compare
+const compare = () => {
+  router.push(`/comparison/${props.alldata.id}`);
 };
 </script>
 
