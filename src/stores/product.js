@@ -29,7 +29,7 @@ export const useProductStore = defineStore({
     },
     async getProductByCategoryId(id) {
       try {
-        let res = await products.getProductByCategoryId(id);
+        let res = await products.getProductsByCategoryId(id);
         this.cats = res;
         return res;
       } catch (error) {

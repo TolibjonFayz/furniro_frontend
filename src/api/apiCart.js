@@ -16,6 +16,11 @@ const cart = {
     return axiosClient.put(url, payload);
   },
 
+  deleteCartByUserId(id) {
+    const url = `cart/delete/user/${id}`;
+    return axiosClient.delete(url);
+  },
+
   deleteCart(id) {
     const url = `cart/delete/${id}`;
     return axiosClient.delete(url);

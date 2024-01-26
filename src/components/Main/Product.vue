@@ -23,12 +23,12 @@
         >
           <i class="fa-solid fa-share-nodes"></i> Share
         </h3>
-        <h3
-          @click="compare()"
+        <a
+          :href="`/comparison/${props.alldata.id}`"
           class="flex items-center gap-2 text-[16px] cursor-pointer"
         >
           <i class="fa-solid fa-code-compare"></i> Compare
-        </h3>
+        </a>
         <h3
           v-if="isProductLiked.qonday == null"
           @click="like()"

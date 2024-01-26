@@ -33,6 +33,14 @@ export const useCartStore = defineStore({
         console.log(error);
       }
     },
+    async deleteCartByUserId(id) {
+      try {
+        let res = await cart.deleteCartByUserId(id);
+        return res;
+      } catch (error) {
+        console.log(error);
+      }
+    },
     async deleteCart(id) {
       try {
         let res = await cart.deleteCart(id);

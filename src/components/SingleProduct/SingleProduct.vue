@@ -100,9 +100,11 @@
       <div id="buttons" class="flex gap-5 pb-14 mt-8">
         <el-input-number v-model="num" :min="1" />
         <el-button plain @click="addToCart()">Add to cart</el-button>
-        <el-button plain style="margin-left: 0px" @click="compare()"
-          ><i class="fa-solid fa-plus mr-1 mt-[2px]"></i>Compare</el-button
-        >
+        <a :href="`/comparison/${route.params.id}`">
+          <el-button plain style="margin-left: 0px"
+            ><i class="fa-solid fa-plus mr-1 mt-[2px]"></i>Compare</el-button
+          >
+        </a>
       </div>
 
       <!-- Xira qism -->
@@ -201,10 +203,6 @@ const addToCart = async () => {
     message: props.alldata.name,
     type: "success",
   });
-};
-
-const compare = () => {
-  router.push(`/comparison/${props.alldata.id}`);
 };
 </script>
 

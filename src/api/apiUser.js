@@ -25,6 +25,10 @@ const user = {
     const url = `user/${id}`;
     return axiosClient.get(url);
   },
+  sendMessageToAdmin(payload) {
+    const url = `user/message`;
+    return axiosClient.post(url, payload);
+  },
 };
 
 export default user;

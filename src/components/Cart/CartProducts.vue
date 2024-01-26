@@ -27,11 +27,7 @@
           class="w-[100%] flex items-center gap-20 mt-3"
         >
           <div class="w-[42%] flex items-center">
-            <img
-              :src="images[index]"
-              alt="img"
-              class="w-[111px]  mr-3"
-            />
+            <img :src="images[index]" alt="img" class="w-[111px] mr-3" />
             <h1 class="w-[80%]">{{ item?.product?.name }}</h1>
           </div>
           <h2>{{ formatNumber(item?.product?.price * item?.quantity) }}$</h2>
@@ -60,12 +56,14 @@
           {{ totalSum }}$
         </h2>
       </div>
-      <el-button
-        type="warning"
-        style="padding: 30px 50px; font-size: 20px; color: #000"
-        plain
-        >Check out</el-button
-      >
+      <a href="/checkout">
+        <el-button
+          type="warning"
+          style="padding: 30px 50px; font-size: 20px; color: #000"
+          plain
+          >Check out</el-button
+        >
+      </a>
     </div>
   </div>
 </template>

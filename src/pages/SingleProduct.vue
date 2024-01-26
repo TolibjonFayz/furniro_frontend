@@ -4,7 +4,7 @@
     <SPWay :alldata="productStore.one" />
     <SingleProduct :alldata="productStore.one" />
     <Description :alldata="productStore.one" />
-    <!-- <RelatedProducts /> -->
+    <RelatedProducts :alldata="productStore.one" />
     <Footer />
   </div>
 </template>
