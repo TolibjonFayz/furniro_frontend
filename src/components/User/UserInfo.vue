@@ -22,12 +22,30 @@
       </el-form-item>
     </el-form>
     <el-button type="primary" @click="updateUserInfo()">Save</el-button>
+    <div class="mt-5">
+      <el-popconfirm
+        width="220"
+        confirm-button-text="Yes"
+        cancel-button-text="No"
+        :icon="InfoFilled"
+        icon-color="#626AEF"
+        @confirm="logOut()"
+        title="Are you sure about this?"
+      >
+        <template #reference>
+          <el-button>Log Out</el-button>
+        </template>
+      </el-popconfirm>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { reactive, onMounted, ref, watch } from "vue";
 import { useUserStore } from "../../stores/user";
+import { InfoFilled } from "@element-plus/icons-vue";
+import { ElNotification } from "element-plus";
+import router from "../../router";
 
 const userInfo = ref("");
 const loading = ref(true);
@@ -49,6 +67,19 @@ const updateUserInfo = async () => {
   loading.value = true;
   await userStore.updateUser(userid, payload);
   loading.value = false;
+};
+
+const logOut = async () => {
+  localStorage.removeItem("userid");
+  localStorage.removeItem("refreshtoken");
+  ElNotification({
+    title: "Successfully log out",
+    message: "You are being redirected to main page",
+    type: "success",
+  });
+  setTimeout(() => {
+    router.push("/");
+  }, 1000);
 };
 
 watch(userInfo, (value) => {

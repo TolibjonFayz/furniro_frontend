@@ -96,10 +96,10 @@
           class="flex justify-between"
         >
           <h1 class="font-['Poppins'] text-[#9F9F9F]">
-            {{ item?.product?.name }}
+            {{ item?.product?.name }} * {{ item?.quantity }}
           </h1>
           <h1 class="font-['Poppins']">
-            {{ formatNumber(item?.product?.price) }} $
+            {{ formatNumber(item?.product?.price*item?.quantity) }} $
           </h1>
         </div>
         <div id="total" class="flex justify-between pb-8">
@@ -150,11 +150,20 @@
       </h2>
       <div class="flex justify-center">
         <el-button
+          v-if="!loadingbtn"
           type="warning"
           @click="go()"
           class="w-[200px]"
           style="padding-top: 20px; padding-bottom: 20px; border-radius: 10px"
           >Place order</el-button
+        >
+        <el-button
+          v-if="loadingbtn"
+          class="w-[200px]"
+          type="warning"
+          style="padding-top: 20px; padding-bottom: 20px; border-radius: 10px"
+          loading
+          >Please wait...</el-button
         >
       </div>
     </div>
@@ -187,6 +196,8 @@ const forms = reactive({
   paymenttype: radio.value,
   card: "",
 });
+
+const loadingbtn = ref(false);
 
 const isFirstName = ref(false);
 const isLastName = ref(false);
@@ -266,24 +277,39 @@ const go = async () => {
     isLastName.value = false;
     isFirstName.value = false;
   } else {
-    ElNotification({
-      title: "Successfully",
-      message:
-        ("i",
-        { style: "color: teal" },
-        "Your order successfully received. Our admintrators will call you soon 🙂"),
-      type: "success",
-    });
-    const payload = {
-      userinfo: forms,
-      products: cartStore.cart,
-    };
-    console.log(payload);
-    await userStore.sendMessageToUser(payload);
-    await cartStore.deleteCartByUserId(Number(localStorage.getItem("userid")));
-    setTimeout(() => {
-      router.push({ name: "home" });
-    }, 3000);
+    try {
+      loadingbtn.value = true;
+      const payload = {
+        userinfo: forms,
+        products: cartStore.cart,
+      };
+      await userStore.sendMessageToUser(payload);
+      await cartStore.deleteCartByUserId(
+        Number(localStorage.getItem("userid"))
+      );
+      loadingbtn.value = false;
+      ElNotification({
+        title: "Successfully",
+        message:
+          ("i",
+          { style: "color: teal" },
+          "Your order successfully received. Our admintrators will call you soon 🙂"),
+        type: "success",
+      });
+      setTimeout(() => {
+        router.push({ name: "home" });
+      }, 2000);
+    } catch (error) {
+      console.log(error);
+      ElNotification({
+        title: "Error",
+        message:
+          ("i",
+          { style: "color: teal" },
+          "Something went wrong. Please contact to admintrators"),
+        type: "error",
+      });
+    }
   }
 };
 

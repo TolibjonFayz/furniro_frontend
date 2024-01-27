@@ -44,7 +44,7 @@
           <i class="fa-solid fa-heart"></i> Like
         </h3>
       </div>
-      <a :href="`http://localhost:5173/product/${props.alldata.product.id}`">
+      <a :href="`http://furniro.uz/product/${props.alldata.product.id}`">
         <el-button
           type="warning"
           plain
@@ -216,7 +216,7 @@ const goSingleProduct = () => {
 
 // Share
 const share = () => {
-  const textToCopy = `http://localhost:5173/product/${props.alldata.product.id}`;
+  const textToCopy = `http://furniro.uz/product/${props.alldata.product.id}`;
   navigator.clipboard.writeText(textToCopy).catch((error) => {
     console.error("Error copying text:", error);
   });

@@ -55,10 +55,20 @@
         >
           <el-form-item label="Your name">
             <el-input v-model="forms.name" placeholder="Falonchi" />
+            <el-alert
+              v-if="isName"
+              title="Please enter your name"
+              type="error"
+            />
           </el-form-item>
 
           <el-form-item label="Email address">
             <el-input v-model="forms.email" placeholder="falonchi@gmail.com" />
+            <el-alert
+              v-if="isEmail"
+              title="Please enter your email"
+              type="error"
+            />
           </el-form-item>
 
           <el-form-item label="Subject">
@@ -71,18 +81,28 @@
               v-model="forms.message"
               placeholder="Hi! i’d like to ask about..."
             />
+            <el-alert
+              v-if="isMessage"
+              title="Please enter your message"
+              type="error"
+            />
           </el-form-item>
         </el-form>
-        <el-button type="warning" @click="go()">Submit</el-button>
+        <el-button v-if="!loading" type="warning" @click="go()"
+          >Send</el-button
+        >
+        <el-button v-if="loading" type="warning" loading>Sending</el-button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import { ElNotification } from "element-plus";
+import { useUserStore } from "../../stores/user";
 
+const userStore = useUserStore();
 const forms = reactive({
   name: "",
   email: "",
@@ -90,16 +110,52 @@ const forms = reactive({
   message: "",
 });
 
-const go = () => {
-  ElNotification({
-    title: "We received your message",
-    message: "Our adminstration will answer you soon 🙂",
-    type: "success",
-  });
+const isName = ref(false);
+const isEmail = ref(false);
+const isMessage = ref(false);
+const loading = ref(false);
+
+const go = async () => {
+  if (!forms.name) {
+    isName.value = true;
+  } else if (!forms.email) {
+    isEmail.value = true;
+    isName.value = false;
+  } else if (!forms.message) {
+    isMessage.value = true;
+    isEmail.value = false;
+    isName.value = false;
+  } else {
+    loading.value = true;
+    isMessage.value = false;
+    isEmail.value = false;
+    isName.value = false;
+    const payload = {
+      userinfo: forms,
+      products:
+        "This user wanted to contact with you. With contact page (furniro)",
+    };
+    await userStore.sendMessageToUser(payload);
+    loading.value = false;
+    ElNotification({
+      title: "We received your message",
+      message: "Our adminstration will answer you soon 🙂",
+      type: "success",
+    });
+    setTimeout(() => {
+      location.reload();
+    }, 3000);
+  }
 };
 </script>
 
 <style lang="scss" scoped>
+.el-alert {
+  margin: 5px 0 0;
+}
+.el-alert:first-child {
+  margin: 0;
+}
 @media screen and (max-width: 1000px) {
   #left {
     width: 45%;

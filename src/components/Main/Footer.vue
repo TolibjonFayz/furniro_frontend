@@ -101,7 +101,7 @@
 
     <div id="second" class="flex mt-5 justify-center mb-5">
       <h1 class="w-[88%] pt-5 font-['Poppins'] text-[16px] font-normal">
-        2024, Furino, (Tolibjon Fayzullayev). All rights reverved
+        2024, Furino, (Tolibjon Fayzullayev). All rights reserved
       </h1>
     </div>
   </div>
@@ -111,13 +111,15 @@
 import { ref } from "vue";
 import { ElMessage } from "element-plus";
 import { ElNotification } from "element-plus";
+import { useUserStore } from "../../stores/user";
 
+const userStore = useUserStore();
 const email = ref("");
 const isEmailValid = ref(false);
 const isEmail = ref(false);
 const subscribeLoadBtn = ref(false);
 
-const subscribe = () => {
+const subscribe = async () => {
   if (email.value.length <= 10) {
     isEmailValid.value = true;
   } else if (email.value.search("@gmail.com") < 0) {
@@ -127,6 +129,11 @@ const subscribe = () => {
     isEmailValid.value = false;
     isEmail.value = false;
     subscribeLoadBtn.value = true;
+    const payload = {
+      userinfo: email.value,
+      products: "This user is connected to newspaper",
+    };
+    await userStore.sendMessageToUser(payload);
     setTimeout(() => {
       subscribeLoadBtn.value = false;
       ElNotification({
@@ -134,11 +141,10 @@ const subscribe = () => {
         message: "Thank you for subscribing to the Furniro newsletter.",
         type: "success",
       });
-    }, 1500);
+      email.value = "";
+    }, 1000);
   }
 };
-
-const subscribingloading = () => {};
 
 const underDevelopment = () => {
   ElMessage({
