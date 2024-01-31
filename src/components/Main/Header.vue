@@ -1,9 +1,19 @@
 <template>
   <div id="main" class="flex justify-between ml-10 mr-10 p-[29px]">
     <!-- Logo -->
-    <a href="/" id="logo" class="flex justify-center items-center gap-2">
+    <a
+      href="/"
+      id="logo"
+      class="font-['Montserrat'] flex justify-center items-center gap-2"
+    >
       <img src="/logo.png" alt="Logo img" />
-      <h1 class="font-['Montserrat'] text-[34px] font-bold">Furniro</h1>
+      <h1 class="text-[34px] font-bold">Furniro</h1>
+      <h2
+        class="p-1 text-[10px] text-[#E6A23C] font-medium"
+        style="border: 2px solid #e6a23c; border-radius: 10px"
+      >
+        Experiment
+      </h2>
     </a>
 
     <!-- Center -->
@@ -18,16 +28,16 @@
       >
     </div>
     <div id="end" class="flex justify-center items-center gap-[45px]">
-      <a @click="changeDialogValue('user')">
+      <a title="Profile" @click="changeDialogValue('user')">
         <i class="fa-regular fa-user cursor-pointer"></i>
       </a>
-      <a href="shop">
+      <a title="Search products" href="shop">
         <i class="fa-solid fa-magnifying-glass cursor-pointer"></i>
       </a>
-      <a @click="changeDialogValue('likes')">
+      <a title="Likes" @click="changeDialogValue('likes')">
         <i class="fa-regular fa-heart cursor-pointer"></i>
       </a>
-      <a @click="changeDialogValue('cart')">
+      <a title="Cart" @click="changeDialogValue('cart')">
         <i class="fa-brands fa-opencart cursor-pointer"></i>
       </a>
     </div>

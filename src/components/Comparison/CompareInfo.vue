@@ -388,7 +388,7 @@
       <h1>Add a product</h1>
       <el-select v-model="value1" filterable placeholder="Choose a product">
         <el-option
-          v-for="item in options"
+          v-for="item in productStore.limit"
           :key="item.id"
           :label="item.name"
           :value="item.id"
@@ -501,7 +501,10 @@ onMounted(async () => {
   loading1.value = true;
   product1.value = await productStore.getProductById(route.params.id);
   loading1.value = false;
-  options.value = await productStore.getAllProducts();
+  const params = {
+    limit: 50,
+  };
+  options.value = await productStore.getProductsByLimit(params);
 });
 </script>
 

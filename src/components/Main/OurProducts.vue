@@ -14,12 +14,14 @@
       class="flex flex-wrap justify-center mb-12 gap-10"
     >
       <Product
-        v-for="(item, index) in productStore.all"
+        v-for="(item, index) in productStore.limit"
         :alldata="item"
         :key="index"
       />
     </div>
     <el-button
+      @click="more()"
+      v-if="productStore.count > params.limit"
       type="warning"
       plain
       style="padding: 15px 50px; border-radius: 2px"
@@ -36,9 +38,19 @@ import { useProductStore } from "../../stores/product";
 const loading = ref(false);
 const productStore = useProductStore();
 
+const params = {
+  limit: 12,
+};
+
+const more = async () => {
+  params.limit += 12;
+  loading.value = true;
+  await productStore.getProductsByLimit(params);
+  loading.value = false;
+};
 onMounted(async () => {
   loading.value = true;
-  await productStore.getAllProducts();
+  await productStore.getProductsByLimit(params);
   loading.value = false;
 });
 </script>

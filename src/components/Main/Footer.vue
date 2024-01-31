@@ -101,7 +101,7 @@
 
     <div id="second" class="flex mt-5 justify-center mb-5">
       <h1 class="w-[88%] pt-5 font-['Poppins'] text-[16px] font-normal">
-        2024, Furino, (Tolibjon Fayzullayev). All rights reserved
+        2024, Furniro, (Tolibjon Fayzullayev). All rights reserved
       </h1>
     </div>
   </div>

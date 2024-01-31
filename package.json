@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hennge/vue3-pagination": "^1.0.17",
     "axios": "^1.6.5",
     "element-plus": "^2.4.4",
     "pinia": "^2.1.7",

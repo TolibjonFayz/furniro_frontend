@@ -250,11 +250,6 @@ const like = async () => {
     }
   }
 };
-
-// Compare
-const compare = () => {
-  router.push(`/comparison/${props.alldata.id}`);
-};
 </script>
 
 <style lang="scss" scoped>

@@ -241,7 +241,7 @@ const like = async () => {
         product_id: props.alldata.product.id,
       });
     } else {
-      localStorage.removeItem(props.alldata.name);
+      localStorage.removeItem(props.alldata.product.name);
       isProductLiked.qonday = null;
       await likeStore.deleteLikeByIds({
         user_id: Number(localStorage.getItem("userid")),
